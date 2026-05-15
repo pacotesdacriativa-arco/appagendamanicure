@@ -6,9 +6,7 @@
 <title>Agenda Interativa</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -24,125 +22,62 @@ body{
   padding:25px;
 }
 
-.logo{
-  text-align:center;
-  margin-top:25px;
-}
+.logo{text-align:center;margin-top:25px}
 
 .logo-circle{
-  width:75px;
-  height:75px;
-  border-radius:50%;
-  background:#ff1493;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-size:34px;
+  width:75px;height:75px;border-radius:50%;
+  background:#ff1493;color:white;
+  display:flex;align-items:center;justify-content:center;
+  margin:auto;font-size:34px;
   box-shadow:0 8px 25px rgba(255,20,147,.35);
 }
 
-h1{
-  color:#d6007f;
-  text-align:center;
-  margin-bottom:5px;
-}
-
-.subtitle{
-  text-align:center;
-  color:#777;
-  margin-bottom:25px;
-}
+h1{color:#d6007f;text-align:center;margin-bottom:5px}
+.subtitle{text-align:center;color:#777;margin-bottom:25px}
 
 .card{
-  background:white;
-  border-radius:24px;
-  padding:22px;
-  margin:18px 0;
+  background:white;border-radius:24px;padding:22px;margin:18px 0;
   box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
-h2{
-  color:#d6007f;
-  margin-top:0;
-}
+h2,h3{color:#d6007f;margin-top:0}
 
 label{
-  font-weight:bold;
-  display:block;
-  margin-top:12px;
-  color:#444;
+  font-weight:bold;display:block;margin-top:12px;color:#444;
 }
 
 input, select{
-  width:100%;
-  padding:14px;
-  margin-top:7px;
-  border:1px solid #ddd;
-  border-radius:14px;
-  font-size:15px;
-  background:#fff7fb;
+  width:100%;padding:14px;margin-top:7px;
+  border:1px solid #ddd;border-radius:14px;
+  font-size:15px;background:#fff7fb;
 }
 
 button{
-  width:100%;
-  padding:15px;
-  margin-top:16px;
-  border:none;
-  border-radius:18px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+  width:100%;padding:15px;margin-top:16px;border:none;
+  border-radius:18px;font-size:16px;font-weight:bold;cursor:pointer;
 }
 
 .btn-pink{
-  background:#ff1493;
-  color:white;
+  background:#ff1493;color:white;
   box-shadow:0 8px 20px rgba(255,20,147,.3);
 }
 
 .btn-outline{
-  background:white;
-  color:#ff1493;
-  border:2px solid #ff1493;
+  background:white;color:#ff1493;border:2px solid #ff1493;
 }
 
-.hidden{
-  display:none;
+.hidden{display:none}
+
+.agendamento,.servico-item,.horario-item{
+  background:#fff0f8;padding:14px;border-radius:16px;
+  margin-top:10px;border-left:5px solid #ff1493;
 }
 
-.agendamento{
-  background:#fff0f8;
-  padding:14px;
-  border-radius:16px;
-  margin-top:10px;
-  border-left:5px solid #ff1493;
-}
-
-.small{
-  font-size:13px;
-  color:#777;
-}
-
-.servico-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#fff0f8;
-  padding:12px;
-  border-radius:14px;
-  margin-top:8px;
-}
+.small{font-size:13px;color:#777}
 
 .delete{
-  background:#ff4f8b;
-  color:white;
-  border:none;
-  width:auto;
-  padding:8px 10px;
-  margin:0;
-  border-radius:10px;
+  background:#ff4f8b;color:white;border:none;
+  width:auto;padding:8px 10px;margin-top:8px;border-radius:10px;
 }
 </style>
 </head>
@@ -169,21 +104,10 @@ button{
     <select id="servico"></select>
 
     <label>Data</label>
-    <input type="date" id="data">
+    <input type="date" id="dataCliente" onchange="carregarHorariosCliente()">
 
     <label>Horário disponível</label>
-    <select id="horario">
-      <option>09:00</option>
-      <option>10:00</option>
-      <option>11:00</option>
-      <option>13:00</option>
-      <option>14:00</option>
-      <option>15:00</option>
-      <option>16:00</option>
-      <option>17:00</option>
-      <option>18:00</option>
-      <option>18:30</option>
-    </select>
+    <select id="horarioCliente"></select>
 
     <label>Nome</label>
     <input type="text" id="nome" placeholder="Digite seu nome">
@@ -206,6 +130,20 @@ button{
   <div class="card hidden" id="painel">
     <h2>Painel da Designer</h2>
 
+    <h3>Horários por dia</h3>
+
+    <label>Escolha a data</label>
+    <input type="date" id="dataPainel" onchange="mostrarHorariosPainel()">
+
+    <label>Adicionar horário</label>
+    <input type="time" id="novoHorario">
+
+    <button class="btn-pink" onclick="adicionarHorario()">Adicionar horário</button>
+
+    <div id="listaHorarios"></div>
+
+    <hr>
+
     <h3>Agendamentos</h3>
     <div id="listaAgendamentos">
       <p class="small">Nenhum agendamento ainda.</p>
@@ -225,20 +163,15 @@ button{
 
     <div id="listaServicos"></div>
 
-    <hr>
-
-    <h3>Horários Disponíveis</h3>
-    <p class="small">Protótipo simples: os horários aparecem fixos para teste.</p>
-
     <button class="btn-outline" onclick="voltar()">Sair</button>
   </div>
 
 </div>
 
 <script>
-let numeroWhatsappDesigner = "5511999999999";
+let numeroWhatsappDesigner = "5511951136640";
 
-let servicos = [
+let servicos = JSON.parse(localStorage.getItem("servicos")) || [
   {nome:"Alongamento em gel", valor:"R$ 90,00"},
   {nome:"Banho de gel", valor:"R$ 70,00"},
   {nome:"Blindagem", valor:"R$ 50,00"},
@@ -248,7 +181,14 @@ let servicos = [
   {nome:"Pé e mão", valor:"R$ 60,00"}
 ];
 
-let agendamentos = [];
+let horariosPorDia = JSON.parse(localStorage.getItem("horariosPorDia")) || {};
+let agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
+
+function salvar(){
+  localStorage.setItem("servicos", JSON.stringify(servicos));
+  localStorage.setItem("horariosPorDia", JSON.stringify(horariosPorDia));
+  localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
+}
 
 function esconderTudo(){
   document.getElementById("inicio").classList.add("hidden");
@@ -265,6 +205,7 @@ function voltar(){
 function mostrarCliente(){
   esconderTudo();
   atualizarServicosCliente();
+  carregarHorariosCliente();
   document.getElementById("areaCliente").classList.remove("hidden");
 }
 
@@ -280,7 +221,7 @@ function entrarPainel(){
     esconderTudo();
     atualizarPainel();
     document.getElementById("painel").classList.remove("hidden");
-  } else {
+  }else{
     alert("Senha incorreta");
   }
 }
@@ -297,30 +238,105 @@ function atualizarServicosCliente(){
   });
 }
 
-function agendar(){
-  let servicoIndex = document.getElementById("servico").value;
-  let servico = servicos[servicoIndex];
-  let data = document.getElementById("data").value;
-  let horario = document.getElementById("horario").value;
-  let nome = document.getElementById("nome").value;
-  let telefone = document.getElementById("telefone").value;
+function carregarHorariosCliente(){
+  let data = document.getElementById("dataCliente").value;
+  let select = document.getElementById("horarioCliente");
+  select.innerHTML = "";
 
-  if(!nome || !telefone || !data){
-    alert("Preencha nome, telefone e data.");
+  if(!data || !horariosPorDia[data] || horariosPorDia[data].length === 0){
+    let option = document.createElement("option");
+    option.textContent = "Nenhum horário disponível";
+    option.value = "";
+    select.appendChild(option);
     return;
   }
 
-  let agendamento = {
-    nome,
-    telefone,
-    servico: servico.nome,
-    valor: servico.valor,
-    data,
-    horario
-  };
+  horariosPorDia[data].forEach(h=>{
+    let option = document.createElement("option");
+    option.value = h;
+    option.textContent = h;
+    select.appendChild(option);
+  });
+}
 
+function adicionarHorario(){
+  let data = document.getElementById("dataPainel").value;
+  let horario = document.getElementById("novoHorario").value;
+
+  if(!data || !horario){
+    alert("Escolha uma data e um horário.");
+    return;
+  }
+
+  if(!horariosPorDia[data]){
+    horariosPorDia[data] = [];
+  }
+
+  if(horariosPorDia[data].includes(horario)){
+    alert("Esse horário já existe nesse dia.");
+    return;
+  }
+
+  horariosPorDia[data].push(horario);
+  horariosPorDia[data].sort();
+
+  document.getElementById("novoHorario").value = "";
+  salvar();
+  mostrarHorariosPainel();
+}
+
+function removerHorario(data, horario){
+  horariosPorDia[data] = horariosPorDia[data].filter(h => h !== horario);
+  salvar();
+  mostrarHorariosPainel();
+}
+
+function mostrarHorariosPainel(){
+  let data = document.getElementById("dataPainel").value;
+  let lista = document.getElementById("listaHorarios");
+  lista.innerHTML = "";
+
+  if(!data){
+    lista.innerHTML = `<p class="small">Escolha uma data para ver os horários.</p>`;
+    return;
+  }
+
+  if(!horariosPorDia[data] || horariosPorDia[data].length === 0){
+    lista.innerHTML = `<p class="small">Nenhum horário cadastrado para esse dia.</p>`;
+    return;
+  }
+
+  horariosPorDia[data].forEach(h=>{
+    lista.innerHTML += `
+      <div class="horario-item">
+        <strong>${h}</strong><br>
+        <button class="delete" onclick="removerHorario('${data}','${h}')">Excluir horário</button>
+      </div>
+    `;
+  });
+}
+
+function agendar(){
+  let servicoIndex = document.getElementById("servico").value;
+  let servico = servicos[servicoIndex];
+  let data = document.getElementById("dataCliente").value;
+  let horario = document.getElementById("horarioCliente").value;
+  let nome = document.getElementById("nome").value;
+  let telefone = document.getElementById("telefone").value;
+
+  if(!nome || !telefone || !data || !horario){
+    alert("Preencha nome, telefone, data e horário.");
+    return;
+  }
+
+  let agendamento = {nome, telefone, servico:servico.nome, valor:servico.valor, data, horario};
   agendamentos.push(agendamento);
-  localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
+
+  if(horariosPorDia[data]){
+    horariosPorDia[data] = horariosPorDia[data].filter(h => h !== horario);
+  }
+
+  salvar();
 
   let mensagem = `Olá! Gostaria de confirmar meu agendamento 💅
 
@@ -346,8 +362,8 @@ function adicionarServico(){
   }
 
   servicos.push({nome, valor});
+  salvar();
   atualizarPainel();
-  atualizarServicosCliente();
 
   document.getElementById("novoServico").value = "";
   document.getElementById("valorServico").value = "";
@@ -355,27 +371,25 @@ function adicionarServico(){
 
 function removerServico(index){
   servicos.splice(index, 1);
+  salvar();
   atualizarPainel();
-  atualizarServicosCliente();
 }
 
 function atualizarPainel(){
+  mostrarHorariosPainel();
+
   let listaServicos = document.getElementById("listaServicos");
   listaServicos.innerHTML = "";
 
   servicos.forEach((s, i)=>{
     listaServicos.innerHTML += `
       <div class="servico-item">
-        <span>${s.nome} - ${s.valor}</span>
-        <button class="delete" onclick="removerServico(${i})">Excluir</button>
+        <strong>${s.nome}</strong><br>
+        ${s.valor}<br>
+        <button class="delete" onclick="removerServico(${i})">Excluir serviço</button>
       </div>
     `;
   });
-
-  let salvos = localStorage.getItem("agendamentos");
-  if(salvos){
-    agendamentos = JSON.parse(salvos);
-  }
 
   let lista = document.getElementById("listaAgendamentos");
   lista.innerHTML = "";
