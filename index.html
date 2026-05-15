@@ -10,11 +10,94 @@
 
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   background:
-    radial-gradient(circle at top left,#ff8acb 0,#ffd6ec 25%,transparent 45%),
-    linear-gradient(180deg,#ffb6df,#fff0f8);
-  color:#333;
+  radial-gradient(circle at top left,#ff8acb 0,#ffd6ec 25%,transparent 45%),
+  linear-gradient(180deg,#ffb6df,#fff0f8);
+  overflow-x:hidden;
+}
+
+.hidden{
+  display:none;
+}
+
+.tela-inicial{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.box-inicial{
+  width:100%;
+  max-width:400px;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(10px);
+  border-radius:35px;
+  padding:40px 25px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(255,20,147,.25);
+  border:1px solid rgba(255,255,255,.8);
+}
+
+.logo-circle{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff1493,#ff69b4,#ffc2e2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  color:white;
+  font-size:45px;
+  box-shadow:0 0 35px rgba(255,20,147,.55);
+  border:4px solid white;
+}
+
+h1{
+  color:#d6007f;
+  margin-top:20px;
+  margin-bottom:8px;
+  font-size:34px;
+  text-shadow:0 2px 10px rgba(255,255,255,.7);
+}
+
+.sub{
+  color:#9b3b70;
+  font-weight:bold;
+  margin-bottom:35px;
+}
+
+.btn-abrir{
+  width:100%;
+  padding:18px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(135deg,#ff1493,#ff4fb3,#ff85cc);
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 12px 28px rgba(255,20,147,.4);
+  animation:glow 1.7s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    box-shadow:0 10px 25px rgba(255,20,147,.35);
+  }
+  to{
+    box-shadow:0 14px 35px rgba(255,20,147,.65);
+  }
+}
+
+.clique{
+  margin-top:14px;
+  color:#c21878;
+  font-size:14px;
+  font-weight:bold;
 }
 
 .container{
@@ -47,7 +130,7 @@ body{
   margin-top:25px;
 }
 
-.logo-circle{
+.logo2{
   width:88px;
   height:88px;
   border-radius:50%;
@@ -62,12 +145,11 @@ body{
   border:3px solid white;
 }
 
-h1{
+.titulo{
   color:#c90076;
   text-align:center;
   margin-bottom:5px;
   font-size:31px;
-  text-shadow:0 2px 8px rgba(255,255,255,.8);
 }
 
 .subtitle{
@@ -84,22 +166,11 @@ h1{
   padding:23px;
   margin:18px 0;
   box-shadow:0 12px 35px rgba(255,20,147,.22);
-  border:1px solid rgba(255,255,255,.9);
 }
 
 h2{
   color:#d6007f;
-  margin-top:0;
   text-align:center;
-  font-size:24px;
-}
-
-.mini-text{
-  text-align:center;
-  color:#a13a73;
-  font-size:14px;
-  margin-top:-8px;
-  margin-bottom:18px;
 }
 
 label{
@@ -109,49 +180,19 @@ label{
   color:#7a2857;
 }
 
-input, select, textarea{
+input,select,textarea{
   width:100%;
   padding:15px;
   margin-top:7px;
   border:1px solid #ffc1df;
   border-radius:18px;
-  font-size:15px;
   background:#fff7fb;
-  outline:none;
-  box-shadow:inset 0 2px 6px rgba(255,20,147,.08);
-}
-
-input:focus, select:focus, textarea:focus{
-  border-color:#ff1493;
-  box-shadow:0 0 0 3px rgba(255,20,147,.15);
+  font-size:15px;
 }
 
 textarea{
   resize:none;
   height:85px;
-}
-
-button{
-  width:100%;
-  padding:17px;
-  margin-top:20px;
-  border:none;
-  border-radius:22px;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.btn-pink{
-  background:linear-gradient(135deg,#ff1493,#ff4fb3,#ff85cc);
-  color:white;
-  box-shadow:0 10px 25px rgba(255,20,147,.45);
-  animation:glow 1.8s infinite alternate;
-}
-
-@keyframes glow{
-  from{box-shadow:0 8px 20px rgba(255,20,147,.35)}
-  to{box-shadow:0 12px 32px rgba(255,20,147,.65)}
 }
 
 .aviso{
@@ -162,14 +203,7 @@ button{
   font-size:14px;
   margin-top:16px;
   text-align:center;
-  border:1px solid #ffc1df;
   font-weight:bold;
-}
-
-.decor{
-  text-align:center;
-  font-size:22px;
-  margin:10px 0;
 }
 
 footer{
@@ -184,96 +218,139 @@ footer{
 
 <body>
 
-<div class="container">
+<div class="tela-inicial" id="inicio">
 
-  <div class="brilho b1">✨</div>
-  <div class="brilho b2">💖</div>
-  <div class="brilho b3">✨</div>
+  <div class="box-inicial">
 
-  <div class="logo">
     <div class="logo-circle">💅</div>
+
     <h1>Agenda Interativa</h1>
-    <p class="subtitle">Agende seu horário com praticidade e charme</p>
-  </div>
 
-  <div class="card">
-    <h2>Agendar Horário</h2>
-    <p class="mini-text">Preencha seus dados e envie sua solicitação pelo WhatsApp 💕</p>
+    <p class="sub">
+      Agende seu horário com praticidade e charme ✨
+    </p>
 
-    <div class="decor">💗 ✨ 💅 ✨ 💗</div>
+    <button class="btn-abrir" onclick="abrirAgenda()">
+      Abrir Agenda 💖
+    </button>
 
-    <label>Serviço desejado</label>
-    <select id="servico">
-      <option>Alongamento em gel - R$ 90,00</option>
-      <option>Banho de gel - R$ 70,00</option>
-      <option>Blindagem - R$ 50,00</option>
-      <option>Fibra de vidro - R$ 120,00</option>
-      <option>Esmaltação em gel - R$ 45,00</option>
-      <option>Nail art - R$ 20,00</option>
-      <option>Pé e mão - R$ 60,00</option>
-    </select>
-
-    <label>Escolha a data</label>
-    <input type="date" id="data">
-
-    <label>Escolha o horário</label>
-    <select id="horario">
-      <option>08:00</option>
-      <option>09:00</option>
-      <option>10:00</option>
-      <option>11:00</option>
-      <option>12:00</option>
-      <option>13:00</option>
-      <option>14:00</option>
-      <option>15:00</option>
-      <option>16:00</option>
-      <option>17:00</option>
-      <option>18:00</option>
-      <option>19:00</option>
-      <option>20:00</option>
-      <option>21:00</option>
-      <option>22:00</option>
-    </select>
-
-    <label>Nome</label>
-    <input type="text" id="nome" placeholder="Digite seu nome">
-
-    <label>Telefone</label>
-    <input type="text" id="telefone" placeholder="Digite seu WhatsApp">
-
-    <label>Observação</label>
-    <textarea id="observacao" placeholder="Ex: cor desejada, modelo, manutenção, etc."></textarea>
-
-    <div class="aviso">
-      ⚠️ Horário sujeito à confirmação da profissional.
+    <div class="clique">
+      Clique para abrir
     </div>
 
-    <button class="btn-pink" onclick="enviarWhatsApp()">Confirmar pelo WhatsApp ✨</button>
   </div>
 
-  <footer>
-    Agenda Interativa 💖
-  </footer>
+</div>
+
+<div class="hidden" id="agenda">
+
+<div class="container">
+
+<div class="brilho b1">✨</div>
+<div class="brilho b2">💖</div>
+<div class="brilho b3">✨</div>
+
+<div class="logo">
+<div class="logo2">💅</div>
+
+<h1 class="titulo">Agenda Interativa</h1>
+
+<p class="subtitle">
+Agende seu horário de forma rápida e prática
+</p>
+</div>
+
+<div class="card">
+
+<h2>Agendar Horário</h2>
+
+<label>Serviço desejado</label>
+
+<select id="servico">
+<option>Alongamento em gel - R$ 90,00</option>
+<option>Banho de gel - R$ 70,00</option>
+<option>Blindagem - R$ 50,00</option>
+<option>Fibra de vidro - R$ 120,00</option>
+<option>Esmaltação em gel - R$ 45,00</option>
+<option>Nail art - R$ 20,00</option>
+<option>Pé e mão - R$ 60,00</option>
+</select>
+
+<label>Escolha a data</label>
+<input type="date" id="data">
+
+<label>Escolha o horário</label>
+
+<select id="horario">
+<option>08:00</option>
+<option>09:00</option>
+<option>10:00</option>
+<option>11:00</option>
+<option>12:00</option>
+<option>13:00</option>
+<option>14:00</option>
+<option>15:00</option>
+<option>16:00</option>
+<option>17:00</option>
+<option>18:00</option>
+<option>19:00</option>
+<option>20:00</option>
+<option>21:00</option>
+<option>22:00</option>
+</select>
+
+<label>Nome</label>
+<input type="text" id="nome" placeholder="Digite seu nome">
+
+<label>Telefone</label>
+<input type="text" id="telefone" placeholder="Digite seu WhatsApp">
+
+<label>Observação</label>
+
+<textarea id="observacao" placeholder="Ex: preferência de cor, manutenção, modelo, etc."></textarea>
+
+<div class="aviso">
+⚠️ Horário sujeito à confirmação da profissional.
+</div>
+
+<button class="btn-abrir" onclick="enviarWhatsApp()">
+Confirmar pelo WhatsApp ✨
+</button>
+
+</div>
+
+<footer>
+Agenda Interativa 💖
+</footer>
+
+</div>
 
 </div>
 
 <script>
+
+function abrirAgenda(){
+document.getElementById("inicio").style.display="none";
+document.getElementById("agenda").style.display="block";
+}
+
 let numeroWhatsappDesigner = "5511951136640";
 
 function enviarWhatsApp(){
-  let servico = document.getElementById("servico").value;
-  let data = document.getElementById("data").value;
-  let horario = document.getElementById("horario").value;
-  let nome = document.getElementById("nome").value;
-  let telefone = document.getElementById("telefone").value;
-  let observacao = document.getElementById("observacao").value;
 
-  if(!nome || !telefone || !data){
-    alert("Preencha nome, telefone e data.");
-    return;
-  }
+let servico=document.getElementById("servico").value;
+let data=document.getElementById("data").value;
+let horario=document.getElementById("horario").value;
+let nome=document.getElementById("nome").value;
+let telefone=document.getElementById("telefone").value;
+let observacao=document.getElementById("observacao").value;
 
-  let mensagem = `Olá! Gostaria de solicitar um agendamento 💅✨
+if(!nome || !telefone || !data){
+alert("Preencha nome, telefone e data.");
+return;
+}
+
+let mensagem=`Olá! Gostaria de solicitar um agendamento 💅✨
 
 Nome: ${nome}
 Telefone: ${telefone}
@@ -284,8 +361,10 @@ Observação: ${observacao || "Nenhuma"}
 
 Aguardo confirmação do horário 💖`;
 
-  window.open(`https://wa.me/${numeroWhatsappDesigner}?text=${encodeURIComponent(mensagem)}`, "_blank");
+window.open(`https://wa.me/${numeroWhatsappDesigner}?text=${encodeURIComponent(mensagem)}`,"_blank");
+
 }
+
 </script>
 
 </body>
