@@ -17,9 +17,7 @@ body{
   overflow-x:hidden;
 }
 
-.hidden{
-  display:none;
-}
+.hidden{display:none}
 
 .tela-inicial{
   min-height:100vh;
@@ -41,9 +39,7 @@ body{
   border:1px solid rgba(255,255,255,.8);
 }
 
-.logo-circle{
-  width:100px;
-  height:100px;
+.logo-circle,.logo2{
   border-radius:50%;
   background:linear-gradient(135deg,#ff1493,#ff69b4,#ffc2e2);
   display:flex;
@@ -51,46 +47,58 @@ body{
   justify-content:center;
   margin:auto;
   color:white;
-  font-size:45px;
   box-shadow:0 0 35px rgba(255,20,147,.55);
   border:4px solid white;
 }
 
+.logo-circle{
+  width:100px;
+  height:100px;
+  font-size:45px;
+}
+
+.logo2{
+  width:88px;
+  height:88px;
+  font-size:40px;
+}
+
 h1{
   color:#d6007f;
+  text-align:center;
   margin-top:20px;
   margin-bottom:8px;
   font-size:34px;
   text-shadow:0 2px 10px rgba(255,255,255,.7);
 }
 
-.sub{
+.sub,.subtitle{
   color:#9b3b70;
   font-weight:bold;
-  margin-bottom:35px;
+  text-align:center;
 }
 
-.btn-abrir{
+.btn{
   width:100%;
-  padding:18px;
+  padding:17px;
+  margin-top:16px;
   border:none;
-  border-radius:25px;
-  background:linear-gradient(135deg,#ff1493,#ff4fb3,#ff85cc);
-  color:white;
-  font-size:18px;
+  border-radius:24px;
+  font-size:17px;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 12px 28px rgba(255,20,147,.4);
-  animation:glow 1.7s infinite alternate;
 }
 
-@keyframes glow{
-  from{
-    box-shadow:0 10px 25px rgba(255,20,147,.35);
-  }
-  to{
-    box-shadow:0 14px 35px rgba(255,20,147,.65);
-  }
+.btn-pink{
+  background:linear-gradient(135deg,#ff1493,#ff4fb3,#ff85cc);
+  color:white;
+  box-shadow:0 12px 28px rgba(255,20,147,.4);
+}
+
+.btn-light{
+  background:white;
+  color:#d6007f;
+  border:2px solid #ff9ed0;
 }
 
 .clique{
@@ -108,59 +116,8 @@ h1{
   position:relative;
 }
 
-.brilho{
-  position:absolute;
-  color:white;
-  opacity:.8;
-  font-size:22px;
-  animation:pulse 2s infinite alternate;
-}
-
-.b1{top:25px;left:25px}
-.b2{top:120px;right:30px}
-.b3{bottom:70px;left:35px}
-
-@keyframes pulse{
-  from{transform:scale(1);opacity:.4}
-  to{transform:scale(1.25);opacity:1}
-}
-
-.logo{
-  text-align:center;
-  margin-top:25px;
-}
-
-.logo2{
-  width:88px;
-  height:88px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#ff1493,#ff69b4,#ffb6df);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-size:40px;
-  box-shadow:0 0 30px rgba(255,20,147,.55);
-  border:3px solid white;
-}
-
-.titulo{
-  color:#c90076;
-  text-align:center;
-  margin-bottom:5px;
-  font-size:31px;
-}
-
-.subtitle{
-  text-align:center;
-  color:#8a3365;
-  margin-bottom:25px;
-  font-weight:bold;
-}
-
 .card{
-  background:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.9);
   backdrop-filter:blur(8px);
   border-radius:28px;
   padding:23px;
@@ -168,7 +125,7 @@ h1{
   box-shadow:0 12px 35px rgba(255,20,147,.22);
 }
 
-h2{
+h2,h3{
   color:#d6007f;
   text-align:center;
 }
@@ -206,6 +163,24 @@ textarea{
   font-weight:bold;
 }
 
+.anotacao{
+  background:#fff0f8;
+  border-left:5px solid #ff1493;
+  padding:13px;
+  border-radius:16px;
+  margin-top:10px;
+  color:#7a2857;
+}
+
+.btn-delete{
+  background:#ff4f8b;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:12px;
+  margin-top:8px;
+}
+
 footer{
   text-align:center;
   font-size:12px;
@@ -219,138 +194,180 @@ footer{
 <body>
 
 <div class="tela-inicial" id="inicio">
-
   <div class="box-inicial">
-
     <div class="logo-circle">💅</div>
-
     <h1>Agenda Interativa</h1>
+    <p class="sub">Agende seu horário com praticidade e charme ✨</p>
 
-    <p class="sub">
-      Agende seu horário com praticidade e charme ✨
-    </p>
+    <button class="btn btn-pink" onclick="abrirAgenda()">Abrir Agenda 💖</button>
+    <div class="clique">Clique para abrir</div>
 
-    <button class="btn-abrir" onclick="abrirAgenda()">
-      Abrir Agenda 💖
-    </button>
-
-    <div class="clique">
-      Clique para abrir
-    </div>
-
+    <button class="btn btn-light" onclick="abrirLogin()">Designer</button>
   </div>
-
 </div>
 
 <div class="hidden" id="agenda">
+  <div class="container">
 
-<div class="container">
+    <div class="logo">
+      <div class="logo2">💅</div>
+      <h1>Agenda Interativa</h1>
+      <p class="subtitle">Agende seu horário de forma rápida e prática</p>
+    </div>
 
-<div class="brilho b1">✨</div>
-<div class="brilho b2">💖</div>
-<div class="brilho b3">✨</div>
+    <div class="card">
+      <h2>Agendar Horário</h2>
 
-<div class="logo">
-<div class="logo2">💅</div>
+      <label>Serviço desejado</label>
+      <select id="servico">
+        <option>Alongamento em gel - R$ 90,00</option>
+        <option>Banho de gel - R$ 70,00</option>
+        <option>Blindagem - R$ 50,00</option>
+        <option>Fibra de vidro - R$ 120,00</option>
+        <option>Esmaltação em gel - R$ 45,00</option>
+        <option>Nail art - R$ 20,00</option>
+        <option>Pé e mão - R$ 60,00</option>
+      </select>
 
-<h1 class="titulo">Agenda Interativa</h1>
+      <label>Escolha a data</label>
+      <input type="date" id="data">
 
-<p class="subtitle">
-Agende seu horário de forma rápida e prática
-</p>
+      <label>Escolha o horário</label>
+      <select id="horario">
+        <option>08:00</option><option>09:00</option><option>10:00</option>
+        <option>11:00</option><option>12:00</option><option>13:00</option>
+        <option>14:00</option><option>15:00</option><option>16:00</option>
+        <option>17:00</option><option>18:00</option><option>19:00</option>
+        <option>20:00</option><option>21:00</option><option>22:00</option>
+      </select>
+
+      <label>Nome</label>
+      <input type="text" id="nome" placeholder="Digite seu nome">
+
+      <label>Telefone</label>
+      <input type="text" id="telefone" placeholder="Digite seu WhatsApp">
+
+      <label>Observação</label>
+      <textarea id="observacao" placeholder="Ex: preferência de cor, manutenção, modelo, etc."></textarea>
+
+      <div class="aviso">⚠️ Horário sujeito à confirmação da profissional.</div>
+
+      <button class="btn btn-pink" onclick="enviarWhatsApp()">Confirmar pelo WhatsApp ✨</button>
+      <button class="btn btn-light" onclick="voltarInicio()">Voltar</button>
+    </div>
+
+    <footer>Agenda Interativa 💖</footer>
+  </div>
 </div>
 
-<div class="card">
+<div class="hidden" id="loginDesigner">
+  <div class="container">
+    <div class="card">
+      <h2>Área da Designer</h2>
 
-<h2>Agendar Horário</h2>
+      <label>Senha</label>
+      <input type="password" id="senhaDesigner" placeholder="Digite a senha">
 
-<label>Serviço desejado</label>
-
-<select id="servico">
-<option>Alongamento em gel - R$ 90,00</option>
-<option>Banho de gel - R$ 70,00</option>
-<option>Blindagem - R$ 50,00</option>
-<option>Fibra de vidro - R$ 120,00</option>
-<option>Esmaltação em gel - R$ 45,00</option>
-<option>Nail art - R$ 20,00</option>
-<option>Pé e mão - R$ 60,00</option>
-</select>
-
-<label>Escolha a data</label>
-<input type="date" id="data">
-
-<label>Escolha o horário</label>
-
-<select id="horario">
-<option>08:00</option>
-<option>09:00</option>
-<option>10:00</option>
-<option>11:00</option>
-<option>12:00</option>
-<option>13:00</option>
-<option>14:00</option>
-<option>15:00</option>
-<option>16:00</option>
-<option>17:00</option>
-<option>18:00</option>
-<option>19:00</option>
-<option>20:00</option>
-<option>21:00</option>
-<option>22:00</option>
-</select>
-
-<label>Nome</label>
-<input type="text" id="nome" placeholder="Digite seu nome">
-
-<label>Telefone</label>
-<input type="text" id="telefone" placeholder="Digite seu WhatsApp">
-
-<label>Observação</label>
-
-<textarea id="observacao" placeholder="Ex: preferência de cor, manutenção, modelo, etc."></textarea>
-
-<div class="aviso">
-⚠️ Horário sujeito à confirmação da profissional.
+      <button class="btn btn-pink" onclick="entrarDesigner()">Entrar</button>
+      <button class="btn btn-light" onclick="voltarInicio()">Voltar</button>
+    </div>
+  </div>
 </div>
 
-<button class="btn-abrir" onclick="enviarWhatsApp()">
-Confirmar pelo WhatsApp ✨
-</button>
+<div class="hidden" id="painelDesigner">
+  <div class="container">
 
-</div>
+    <div class="logo">
+      <div class="logo2">📒</div>
+      <h1>Agenda da Designer</h1>
+      <p class="subtitle">Anote seus horários confirmados</p>
+    </div>
 
-<footer>
-Agenda Interativa 💖
-</footer>
+    <div class="card">
+      <h2>Novo agendamento</h2>
 
-</div>
+      <label>Nome da cliente</label>
+      <input type="text" id="nomeAnotacao" placeholder="Ex: Maria">
 
+      <label>Telefone</label>
+      <input type="text" id="telefoneAnotacao" placeholder="WhatsApp da cliente">
+
+      <label>Serviço</label>
+      <input type="text" id="servicoAnotacao" placeholder="Ex: Banho de gel">
+
+      <label>Data</label>
+      <input type="date" id="dataAnotacao">
+
+      <label>Horário</label>
+      <input type="time" id="horaAnotacao">
+
+      <label>Observação</label>
+      <textarea id="obsAnotacao" placeholder="Ex: confirmou, pagou sinal, quer francesinha..."></textarea>
+
+      <button class="btn btn-pink" onclick="salvarAnotacao()">Salvar na agenda</button>
+    </div>
+
+    <div class="card">
+      <h2>Agendamentos anotados</h2>
+      <div id="listaAnotacoes"></div>
+
+      <button class="btn btn-light" onclick="voltarInicio()">Sair</button>
+    </div>
+
+  </div>
 </div>
 
 <script>
-
-function abrirAgenda(){
-document.getElementById("inicio").style.display="none";
-document.getElementById("agenda").style.display="block";
-}
-
 let numeroWhatsappDesigner = "5511951136640";
 
-function enviarWhatsApp(){
-
-let servico=document.getElementById("servico").value;
-let data=document.getElementById("data").value;
-let horario=document.getElementById("horario").value;
-let nome=document.getElementById("nome").value;
-let telefone=document.getElementById("telefone").value;
-let observacao=document.getElementById("observacao").value;
-
-if(!nome || !telefone || !data){
-alert("Preencha nome, telefone e data.");
-return;
+function esconderTudo(){
+  document.getElementById("inicio").style.display="none";
+  document.getElementById("agenda").style.display="none";
+  document.getElementById("loginDesigner").style.display="none";
+  document.getElementById("painelDesigner").style.display="none";
 }
 
-let mensagem=`Olá! Gostaria de solicitar um agendamento 💅✨
+function voltarInicio(){
+  esconderTudo();
+  document.getElementById("inicio").style.display="flex";
+}
+
+function abrirAgenda(){
+  esconderTudo();
+  document.getElementById("agenda").style.display="block";
+}
+
+function abrirLogin(){
+  esconderTudo();
+  document.getElementById("loginDesigner").style.display="block";
+}
+
+function entrarDesigner(){
+  let senha = document.getElementById("senhaDesigner").value;
+
+  if(senha === "chocolate3355"){
+    esconderTudo();
+    document.getElementById("painelDesigner").style.display="block";
+    mostrarAnotacoes();
+  }else{
+    alert("Senha incorreta.");
+  }
+}
+
+function enviarWhatsApp(){
+  let servico=document.getElementById("servico").value;
+  let data=document.getElementById("data").value;
+  let horario=document.getElementById("horario").value;
+  let nome=document.getElementById("nome").value;
+  let telefone=document.getElementById("telefone").value;
+  let observacao=document.getElementById("observacao").value;
+
+  if(!nome || !telefone || !data){
+    alert("Preencha nome, telefone e data.");
+    return;
+  }
+
+  let mensagem=`Olá! Gostaria de solicitar um agendamento 💅✨
 
 Nome: ${nome}
 Telefone: ${telefone}
@@ -361,10 +378,70 @@ Observação: ${observacao || "Nenhuma"}
 
 Aguardo confirmação do horário 💖`;
 
-window.open(`https://wa.me/${numeroWhatsappDesigner}?text=${encodeURIComponent(mensagem)}`,"_blank");
-
+  window.open(`https://wa.me/${numeroWhatsappDesigner}?text=${encodeURIComponent(mensagem)}`,"_blank");
 }
 
+function salvarAnotacao(){
+  let nome = document.getElementById("nomeAnotacao").value;
+  let telefone = document.getElementById("telefoneAnotacao").value;
+  let servico = document.getElementById("servicoAnotacao").value;
+  let data = document.getElementById("dataAnotacao").value;
+  let hora = document.getElementById("horaAnotacao").value;
+  let obs = document.getElementById("obsAnotacao").value;
+
+  if(!nome || !data || !hora){
+    alert("Preencha pelo menos nome, data e horário.");
+    return;
+  }
+
+  let anotacoes = JSON.parse(localStorage.getItem("anotacoesDesigner")) || [];
+
+  anotacoes.push({nome, telefone, servico, data, hora, obs});
+
+  localStorage.setItem("anotacoesDesigner", JSON.stringify(anotacoes));
+
+  document.getElementById("nomeAnotacao").value="";
+  document.getElementById("telefoneAnotacao").value="";
+  document.getElementById("servicoAnotacao").value="";
+  document.getElementById("dataAnotacao").value="";
+  document.getElementById("horaAnotacao").value="";
+  document.getElementById("obsAnotacao").value="";
+
+  mostrarAnotacoes();
+}
+
+function excluirAnotacao(index){
+  let anotacoes = JSON.parse(localStorage.getItem("anotacoesDesigner")) || [];
+  anotacoes.splice(index,1);
+  localStorage.setItem("anotacoesDesigner", JSON.stringify(anotacoes));
+  mostrarAnotacoes();
+}
+
+function mostrarAnotacoes(){
+  let lista = document.getElementById("listaAnotacoes");
+  let anotacoes = JSON.parse(localStorage.getItem("anotacoesDesigner")) || [];
+
+  if(anotacoes.length === 0){
+    lista.innerHTML = "<p style='text-align:center;color:#9b3b70;'>Nenhum agendamento anotado ainda.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  anotacoes.forEach((a,index)=>{
+    lista.innerHTML += `
+      <div class="anotacao">
+        <strong>${a.nome}</strong><br>
+        📱 ${a.telefone || "Sem telefone"}<br>
+        💅 ${a.servico || "Serviço não informado"}<br>
+        📅 ${a.data}<br>
+        ⏰ ${a.hora}<br>
+        📝 ${a.obs || "Sem observação"}<br>
+        <button class="btn-delete" onclick="excluirAnotacao(${index})">Excluir</button>
+      </div>
+    `;
+  });
+}
 </script>
 
 </body>
